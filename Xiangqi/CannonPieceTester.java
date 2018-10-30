@@ -1,7 +1,6 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.awt.*;
-import javax.swing.*;
 
 /*a test class for CannonPiece*/
 public class CannonPieceTester{
@@ -9,7 +8,7 @@ public class CannonPieceTester{
   /*test isLegalCaptureMove method*/
   @Test
   public void testIsLegalCaptureMove(){
-    ChessBoard test = new ChessBoard(10,9,new XiangqiDisplay(), new Xiangqi());
+    ChessBoard test = new ChessBoard(10,9,new Display(), new Xiangqi());
     Piece a = new CannonPiece(test,Color.RED, "R", Xiangqi.Side.NORTH,null);
     test.addPiece(a,2,1);
     

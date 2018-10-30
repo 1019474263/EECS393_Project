@@ -1,5 +1,4 @@
 import java.awt.*;
-import javax.swing.*;
 
 /*a class represent chess game, Xiangqi!*/
 public class Xiangqi implements ChessGame{
@@ -15,7 +14,7 @@ public class Xiangqi implements ChessGame{
   firstSide = Side.NORTH;
   
   /*create the board*/
-  ChessBoard game = new ChessBoard(10,9,new XiangqiDisplay(), this);
+  ChessBoard game = new ChessBoard(10,9,new Display(), this);
   
   /*add RookPiece*/
   game.addPiece(new RookPiece(game,Color.RED, "R", Xiangqi.Side.NORTH,null),0,0);

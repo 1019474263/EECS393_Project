@@ -1,5 +1,3 @@
-import javax.swing.event.*;
-import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
@@ -12,7 +10,7 @@ public abstract class Piece {
   /*store the name of piece*/
   private String label = "";
   /*store the side of piece*/
-  private Xiangqi.Side side = null;
+  private IChess.Side side = null;
   /*store the icon of the piece*/
   private Icon icon = null;
   /*store the position of piece*/
@@ -20,7 +18,7 @@ public abstract class Piece {
   private int y=0;
   
   /*create a piece*/
-  public Piece(ChessBoard board, Color color, String label, Xiangqi.Side side, Icon icon){
+  public Piece(ChessBoard board, Color color, String label, IChess.Side side, Icon icon){
     this.board = board;
     this.color = color;
     this.label = label;
@@ -44,7 +42,7 @@ public abstract class Piece {
   }
   
   /*get the side of piece*/
-  public Xiangqi.Side getSide(){
+  public IChess.Side getSide(){
     return side;
   }
   

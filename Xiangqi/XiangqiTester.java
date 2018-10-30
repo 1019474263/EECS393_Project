@@ -1,7 +1,6 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.awt.*;
-import javax.swing.*;
 
 /*a class to test Xiangqi class*/
 public class XiangqiTester{
@@ -10,7 +9,7 @@ public class XiangqiTester{
   @Test
   public void testMakeMove(){
     Xiangqi X = new Xiangqi();
-    ChessBoard test = new ChessBoard(10,9,new XiangqiDisplay(), X);
+    ChessBoard test = new ChessBoard(10,9,new Display(), X);
     Piece a = new RookPiece(test,Color.RED, "R", Xiangqi.Side.NORTH,null);
     test.addPiece(a,0,0);
     X.makeMove(a,0,7);
@@ -23,7 +22,7 @@ public class XiangqiTester{
   @Test
   public void testLegalPieceToPlace(){
    Xiangqi X = new Xiangqi();
-   ChessBoard test = new ChessBoard(10,9,new XiangqiDisplay(), X);
+   ChessBoard test = new ChessBoard(10,9,new Display(), X);
    Piece a = new RookPiece(test,Color.RED, "R", Xiangqi.Side.NORTH,null); 
    Piece b = new RookPiece(test,Color.WHITE, "R", Xiangqi.Side.SOUTH,null); 
    test.addPiece(a,0,0);

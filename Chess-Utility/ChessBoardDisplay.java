@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.event.*;
 
 /* a interface used to display the board*/
 public interface ChessBoardDisplay{

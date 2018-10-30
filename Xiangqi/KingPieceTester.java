@@ -1,7 +1,6 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.awt.*;
-import javax.swing.*;
 
 /*a test class for KingPiece*/
 public class KingPieceTester{
@@ -10,7 +9,7 @@ public class KingPieceTester{
   /*test isLegalNonCaptureMove method*/
   @Test
   public void testIsLegalNonCaptureMove(){
-    ChessBoard test = new ChessBoard(10,9,new XiangqiDisplay(), new Xiangqi());
+    ChessBoard test = new ChessBoard(10,9,new Display(), new Xiangqi());
     Piece a = new KingPiece(test,Color.RED,"K",Xiangqi.Side.NORTH,null);
     
     test.addPiece(a,2,4);

@@ -1,7 +1,6 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.awt.*;
-import javax.swing.*;
 
 /*a test class for RookPiece*/
 public class RookPieceTester{
@@ -9,7 +8,7 @@ public class RookPieceTester{
   /*test getChessBoard method*/
   @Test
   public void testGetChessBoard(){
-   ChessBoard test = new ChessBoard(10,9,new XiangqiDisplay(), new Xiangqi());
+   ChessBoard test = new ChessBoard(10,9,new Display(), new Xiangqi());
    test.addPiece(new RookPiece(test,Color.RED, "R", Xiangqi.Side.NORTH,null),0,0);
    assertEquals(test.getPiece(0,0).getChessBoard(),test);
   }
@@ -17,7 +16,7 @@ public class RookPieceTester{
   /*test getColor method*/
   @Test
   public void testGetColor(){
-   ChessBoard test = new ChessBoard(10,9,new XiangqiDisplay(), new Xiangqi());
+   ChessBoard test = new ChessBoard(10,9,new Display(), new Xiangqi());
    test.addPiece(new RookPiece(test,Color.RED, "R", Xiangqi.Side.NORTH,null),0,0);
    assertEquals(test.getPiece(0,0).getColor(),Color.RED);
   }
@@ -25,7 +24,7 @@ public class RookPieceTester{
   /*test getLabel method*/
   @Test
   public void testGetLabel(){
-   ChessBoard test = new ChessBoard(10,9,new XiangqiDisplay(), new Xiangqi());
+   ChessBoard test = new ChessBoard(10,9,new Display(), new Xiangqi());
    test.addPiece(new RookPiece(test,Color.RED, "R", Xiangqi.Side.NORTH,null),0,0);
    assertEquals(test.getPiece(0,0).getLabel(),"R");
   }
@@ -33,7 +32,7 @@ public class RookPieceTester{
   /*test getSide method*/
   @Test
   public void testGetSide(){
-   ChessBoard test = new ChessBoard(10,9,new XiangqiDisplay(), new Xiangqi());
+   ChessBoard test = new ChessBoard(10,9,new Display(), new Xiangqi());
    test.addPiece(new RookPiece(test,Color.RED, "R", Xiangqi.Side.NORTH,null),0,0);
    assertEquals(test.getPiece(0,0).getSide(),Xiangqi.Side.NORTH);
   }
@@ -41,14 +40,14 @@ public class RookPieceTester{
   /*test getIcon method*/
   @Test
   public void testGetIcon(){
-   ChessBoard test = new ChessBoard(10,9,new XiangqiDisplay(), new Xiangqi());
+   ChessBoard test = new ChessBoard(10,9,new Display(), new Xiangqi());
    test.addPiece(new RookPiece(test,Color.RED, "R", Xiangqi.Side.NORTH,null),0,0);
    assertEquals(test.getPiece(0,0).getIcon(),null);
   }
   /*test getRow method*/
   @Test
   public void testGetRow(){
-   ChessBoard test = new ChessBoard(10,9,new XiangqiDisplay(), new Xiangqi());
+   ChessBoard test = new ChessBoard(10,9,new Display(), new Xiangqi());
    test.addPiece(new RookPiece(test,Color.RED, "R", Xiangqi.Side.NORTH,null),0,0);
    assertEquals(test.getPiece(0,0).getRow(),0);
   }
@@ -56,7 +55,7 @@ public class RookPieceTester{
    /*test getColumn method*/
   @Test
   public void testGetColumn(){
-   ChessBoard test = new ChessBoard(10,9,new XiangqiDisplay(), new Xiangqi());
+   ChessBoard test = new ChessBoard(10,9,new Display(), new Xiangqi());
    test.addPiece(new RookPiece(test,Color.RED, "R", Xiangqi.Side.NORTH,null),0,0);
    assertEquals(test.getPiece(0,0).getColumn(),0);
   }
@@ -64,7 +63,7 @@ public class RookPieceTester{
   /*test isLegalNonCaptureMove method*/
   @Test
   public void testIsLegalNonCaptureMove(){
-    ChessBoard test = new ChessBoard(10,9,new XiangqiDisplay(), new Xiangqi());
+    ChessBoard test = new ChessBoard(10,9,new Display(), new Xiangqi());
     Piece a = new RookPiece(test,Color.RED, "R", Xiangqi.Side.NORTH,null);
     test.addPiece(a,0,0);
     
@@ -78,7 +77,7 @@ public class RookPieceTester{
   /*test isLegalCaptureMove method*/
   @Test
   public void testIsLegalCaptureMove(){
-    ChessBoard test = new ChessBoard(10,9,new XiangqiDisplay(), new Xiangqi());
+    ChessBoard test = new ChessBoard(10,9,new Display(), new Xiangqi());
     Piece a = new RookPiece(test,Color.RED, "R", Xiangqi.Side.NORTH,null);
     test.addPiece(a,0,0);
     

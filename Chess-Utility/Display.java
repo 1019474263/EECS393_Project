@@ -1,10 +1,8 @@
 import javax.swing.*;
-import javax.swing.event.*;
-import java.awt.event.*;
 import java.awt.*;
 
 /*a class used to diaplay the board and every piece*/
-public class XiangqiDisplay implements ChessBoardDisplay{
+public class Display implements ChessBoardDisplay{
   
   /*display the square when there is nothing*/
   @Override
