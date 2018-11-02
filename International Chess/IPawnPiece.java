@@ -15,7 +15,6 @@ public class IPawnPiece extends Piece{
    * while there is an empty square*/
   public boolean isLegalNonCaptureMove(int x, int y){
     boolean result=false;
-    if(isEvolved==false){
       if(this.getSide()== IChess.Side.NORTH){
               if(this.getRow() == 3 && chessboard.hasPiece(3,y) && chessboard.getPiece(3,y).getSide() != IChess.Side.NORTH&& Math.abs(this.getColumn() - y) == 1 && x - this.getRow() == 1){
                   this.getChessBoard().removePiece(3,y);
@@ -38,31 +37,43 @@ public class IPawnPiece extends Piece{
                   }
               }
       }
-    }
-    else{
-        /*
-      if(this.getSide()== IChess.Side.NORTH){
-        if((x-this.getRow()==1&&y==this.getColumn())||(x==this.getRow()&&Math.abs(y-this.getColumn())==1)){
-          result=true;
-        }
-      }
-      else{
-        if((x-this.getRow()==-1&&y==this.getColumn())||(x==this.getRow()&&Math.abs(y-this.getColumn())==1)){
-          result=true;
-        }
-      }*/
-    }
+
     return result;
   }
   
   /*check whether the pawn piece has crossed middle of board*/
   @Override
   public void moveDone(){
-    if(this.getSide()== IChess.Side.NORTH&&this.getRow()==5){
+    if(this.getSide()== IChess.Side.NORTH&&this.getRow()==7){
+        String text = JOptionPane.showInputDialog(this, "(input Q,B,C or K):");
+        promoted(text,this.getSide(),this.getRow(),this.getColumn());
     }
     
-    else if(this.getSide()== IChess.Side.SOUTH&&this.getRow()==4){
+    else if(this.getSide()== IChess.Side.SOUTH&&this.getRow()==0){
+        String text = JOptionPane.showInputDialog(this, "(input Q,B,C or K):");
+        promoted(text,this.getSide(),this.getRow(),this.getColumn());
     }
+  }
+
+
+    public void promoted(String target, IChess.Side s,int x,int y){
+      Color c = Color.WHITE;
+      if(s == IChess.Side.NORTH){
+          c = Color.RED;
+      }
+      chessboard.removePiece(x,y);
+      if(target.contains("q") || target.contains("Q")){
+          chessboard.addPiece(new QueenPiece(chessboard,c,"Q", s,null),x,y);
+      }
+      else if(target.contains("b") || target.contains("B")){
+          chessboard.addPiece(new BishopPiece(chessboard,c,"B", s,null),x,y);
+      }
+      else if(target.contains("c") || target.contains("C")){
+          chessboard.addPiece(new CastlePiece(chessboard,c, "C", s,null),x,y);
+      }
+      else{
+          chessboard.addPiece(new IKnightPiece(chessboard,c,"K", s,null), x,y);
+      }
   }
 
     @Override
