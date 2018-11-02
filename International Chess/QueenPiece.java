@@ -73,31 +73,29 @@ public class QueenPiece extends Piece{
 
   public boolean canMoveCross(int x, int y){
     boolean reachable = false;
+    boolean hasObstacle = false;
     /*store the result*/
 
     if(Math.abs(this.getRow() - x) == Math.abs(this.getColumn() - y)) {
       reachable = true;
+      int i = this.getRow();
+      int j = this.getColumn();
+      if(x - i != 0 && y - j != 0) {
+        int stepx = (x - i) / Math.abs(x - i);
+        int stepy = (y - j) / Math.abs(y - j);
+        while (i != x && j != y && !hasObstacle) {
+          if (chessBoard.hasPiece(i + stepx, j + stepy) && i + stepx != x && j + stepy != y) {
+            hasObstacle = true;
+          } else {
+            i = stepx + i;
+            j = stepy + j;
+          }
+        }
+      }
     }
     else{
       reachable = false;
     }
-
-    int i = this.getRow();
-    int j = this.getColumn();
-    boolean hasObstacle = false;
-    if(x - i != 0 && y - j != 0) {
-      int stepx = (x - i) / Math.abs(x - i);
-      int stepy = (y - j) / Math.abs(y - j);
-      while (i != x && j != y && !hasObstacle) {
-        if (chessBoard.hasPiece(i + stepx, j + stepy) && i + stepx != x && j + stepy != y) {
-          hasObstacle = true;
-        } else {
-          i = stepx + i;
-          j = stepy + j;
-        }
-      }
-    }
-
     return !hasObstacle && reachable;
   }
   

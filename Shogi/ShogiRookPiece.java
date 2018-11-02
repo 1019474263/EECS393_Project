@@ -1,17 +1,10 @@
 import java.awt.*;
 import javax.swing.*;
-
-/*represent a RookPiece*/
-public class CastlePiece extends Piece{
-  private boolean isMoved = false;
-  private boolean isShifted = false;
-  /*create a RookPiece*/
-  public CastlePiece(ChessBoard board, Color color, String label, IChess.Side side, Icon icon){
+/*represent a ShogiRookPiece*/
+public class ShogiRookPiece extends Piece{
+  /*create a ShogiRookPiece*/
+  public ShogiRookPiece(ChessBoard board, Color color, String label, Shogi.Side side, Icon icon){
     super(board, color, label, side, icon);
-  }
-
-  public boolean isMoved(){
-      return isMoved;
   }
   
   
@@ -60,10 +53,6 @@ public class CastlePiece extends Piece{
     }
     else{
       result = false;
-    }
-
-    if(result){
-        isMoved = true;
     }
     return result;
   }
