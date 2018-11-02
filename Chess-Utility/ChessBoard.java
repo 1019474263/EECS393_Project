@@ -56,8 +56,6 @@ public class ChessBoard extends JFrame implements ActionListener{
     
     
     this.p= new Piece[rows][columns];
-    
-  
   
   }
   

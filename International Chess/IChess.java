@@ -23,8 +23,8 @@ public class IChess implements ChessGame{
   game.addPiece(new CastlePiece(game,Color.WHITE, "C", IChess.Side.SOUTH,null),7,7);
 
   /*add KingPiece*/
-  game.addPiece(new IKingPiece(game,Color.RED,"K", IChess.Side.NORTH,null),0,4);
-  game.addPiece(new IKingPiece(game,Color.WHITE,"K", IChess.Side.SOUTH,null),7,4);
+  game.addPiece(new IKingPiece(game,Color.RED,"Ki", IChess.Side.NORTH,null),0,4);
+  game.addPiece(new IKingPiece(game,Color.WHITE,"Ki", IChess.Side.SOUTH,null),7,4);
   
   /*add GuardPiece*/
   game.addPiece(new QueenPiece(game,Color.RED,"Q", IChess.Side.NORTH,null),0,3);

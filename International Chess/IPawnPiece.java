@@ -5,7 +5,7 @@ import javax.swing.*;
 public class IPawnPiece extends Piece{
   /*check whether this pawn piece has evolved*/
   private boolean isEvolved = false;
-  
+  private ChessBoard chessboard = getChessBoard();
   /*create a PawnPiece*/
   public IPawnPiece(ChessBoard board, Color color, String label, IChess.Side side, Icon icon){
     super(board, color, label, side, icon);
@@ -15,43 +15,77 @@ public class IPawnPiece extends Piece{
    * while there is an empty square*/
   public boolean isLegalNonCaptureMove(int x, int y){
     boolean result=false;
-    if(isEvolved==false){
       if(this.getSide()== IChess.Side.NORTH){
-        if(x-this.getRow()==1&&y==this.getColumn()){
-          result=true;
-        }
+              if(this.getRow() == 3 && chessboard.hasPiece(3,y) && chessboard.getPiece(3,y).getSide() != IChess.Side.NORTH&& Math.abs(this.getColumn() - y) == 1 && x - this.getRow() == 1){
+                  this.getChessBoard().removePiece(3,y);
+                  result = true;
+              }
+              else {
+                  if ((x - this.getRow() == 1 || ((x == 3) && x - this.getRow() == 2)) && y == this.getColumn()) {
+                      result = true;
+                  }
+              }
       }
       else{
-        if(x-this.getRow()==-1&&y==this.getColumn()){
-          result=true;
-        }
+              if(this.getRow() == 4 && chessboard.hasPiece(4,y) && chessboard.getPiece(4,y).getSide() != IChess.Side.SOUTH && Math.abs(this.getColumn() - y) == 1 && x - this.getRow() == -1){
+                  this.getChessBoard().removePiece(4,y);
+                  result = true;
+              }
+              else{
+                  if ((x - this.getRow() == -1 || ((x == 4) && x - this.getRow() == -2)) && y == this.getColumn()) {
+                      result = true;
+                  }
+              }
       }
-    }
-    else{
-      if(this.getSide()== IChess.Side.NORTH){
-        if((x-this.getRow()==1&&y==this.getColumn())||(x==this.getRow()&&Math.abs(y-this.getColumn())==1)){
-          result=true;
-        }
-      }
-      else{
-        if((x-this.getRow()==-1&&y==this.getColumn())||(x==this.getRow()&&Math.abs(y-this.getColumn())==1)){
-          result=true;
-        }
-      }
-    }
+
     return result;
   }
   
   /*check whether the pawn piece has crossed middle of board*/
   @Override
   public void moveDone(){
-    if(this.getSide()== IChess.Side.NORTH&&this.getRow()==5){
-      isEvolved=true;
-    }
-    
-    else if(this.getSide()== IChess.Side.SOUTH&&this.getRow()==4){
-      isEvolved=true;
+    if(this.getSide()== IChess.Side.NORTH&&this.getRow()==7 || this.getSide()== IChess.Side.SOUTH&&this.getRow()==0){
+        String text = JOptionPane.showInputDialog("Type which piece to promote to", "(input Q,B,C or K):");
+        promoted(text,this.getSide(),this.getRow(),this.getColumn());
     }
   }
-    
+
+
+    public void promoted(String target, IChess.Side s,int x,int y){
+      Color c = Color.WHITE;
+      if(s == IChess.Side.NORTH){
+          c = Color.RED;
+      }
+      chessboard.removePiece(x,y);
+      if(target.contains("q") || target.contains("Q")){
+          chessboard.addPiece(new QueenPiece(chessboard,c,"Q", s,null),x,y);
+      }
+      else if(target.contains("b") || target.contains("B")){
+          chessboard.addPiece(new BishopPiece(chessboard,c,"B", s,null),x,y);
+      }
+      else if(target.contains("c") || target.contains("C")){
+          chessboard.addPiece(new CastlePiece(chessboard,c, "C", s,null),x,y);
+      }
+      else{
+          chessboard.addPiece(new IKnightPiece(chessboard,c,"K", s,null), x,y);
+      }
   }
+
+    @Override
+    public boolean isLegalCaptureMove(int x, int y) {
+      if(this.getSide() == IChess.Side.NORTH) {
+          if (this.getChessBoard().getPiece(x, y).getSide() != this.getSide() && x - this.getRow() == 1 && Math.abs(y - this.getColumn()) == 1) {
+              return true;
+          } else {
+              return false;
+          }
+      }
+      else{
+          if (this.getChessBoard().getPiece(x, y).getSide() != this.getSide() && x - this.getRow() == -1 && Math.abs(y - this.getColumn()) == 1) {
+              return true;
+          } else {
+              return false;
+          }
+      }
+    }
+}
