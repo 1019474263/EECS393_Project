@@ -3,6 +3,7 @@ import javax.swing.*;
 
 /*represent an ElephantPiece*/
 public class BishopPiece extends Piece{
+  private ChessBoard chessBoard = getChessBoard();
   /*create an ElephantPiece*/
   public BishopPiece(ChessBoard board, Color color, String label, IChess.Side side, Icon icon){
     super(board, color, label, side, icon);
@@ -11,93 +12,33 @@ public class BishopPiece extends Piece{
   /*check whether the piece can move to input position
    * while there is an empty square*/
   public boolean isLegalNonCaptureMove(int x, int y){
+    boolean reachable = false;
     /*store the result*/
-    boolean result = true;
-    if(this.getSide()== IChess.Side.NORTH){
-      if(x>4){
-        result = false;
-      }
-      else{
-        if(x-this.getRow()==2&&y-this.getColumn()==2){
-          if(this.getChessBoard().hasPiece(x-1,y-1)==false){
-            result=true;
-          }
-          else{
-            result=false;
-          }
-        }
-        else if(x-this.getRow()==2&&y-this.getColumn()==-2){
-          if(this.getChessBoard().hasPiece(x-1,y+1)==false){
-          result=true;
-          }
-          else{
-            result=false;
-          }
-        }
-        else if(x-this.getRow()==-2&&y-this.getColumn()==-2){
-          if(this.getChessBoard().hasPiece(x+1,y+1)==false){
-          result=true;
-          }
-          else{
-            result=false;
-          }
-        }
-        else if(x-this.getRow()==-2&&y-this.getColumn()==2){
-          if(this.getChessBoard().hasPiece(x+1,y-1)==false){
-          result=true;
-          }
-          else{
-            result=false;
-          }
-        }
-        else{
-          result=false;
-        }
-      }
+
+    if(Math.abs(this.getRow() - x) == Math.abs(this.getColumn() - y)) {
+      reachable = true;
     }
     else{
-      if(x<5){
-        result = false;
+      reachable = false;
+    }
+
+    int i = this.getRow();
+    int j = this.getColumn();
+    int stepx = (x - i)/Math.abs(x - i);
+    int stepy = (y - j)/Math.abs(y - j);
+    boolean hasObstacle = false;
+    while( i != x && j != y && !hasObstacle){
+      if(chessBoard.hasPiece(i+stepx,j+stepy) && i+stepx != x && j + stepy != y){
+        hasObstacle = true;
       }
       else{
-        if(x-this.getRow()==2&&y-this.getColumn()==2){
-          if(this.getChessBoard().hasPiece(x-1,y-1)==false){
-            result=true;
-          }
-          else{
-            result=false;
-          }
-        }
-        else if(x-this.getRow()==2&&y-this.getColumn()==-2){
-          if(this.getChessBoard().hasPiece(x-1,y+1)==false){
-          result=true;
-          }
-          else{
-           result=false;
-          }
-        }
-        else if(x-this.getRow()==-2&&y-this.getColumn()==-2){
-          if(this.getChessBoard().hasPiece(x+1,y+1)==false){
-          result=true;
-          }
-          else{
-            result=false;
-          }
-        }
-        else if(x-this.getRow()==-2&&y-this.getColumn()==2){
-          if(this.getChessBoard().hasPiece(x+1,y-1)==false){
-          result=true;
-          }
-          else{
-            result=false;
-          }
-        }
-        else{
-          result=false;
-        }
+        i = stepx + i;
+        j = stepy + j;
       }
     }
-    return result;
+
+    return !hasObstacle && reachable;
   }
+
   
 }

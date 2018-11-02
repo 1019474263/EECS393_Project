@@ -12,36 +12,12 @@ public class IKingPiece extends Piece{
    * while there is an empty square*/
   public boolean isLegalNonCaptureMove(int x, int y){
     /*store the result*/
-    boolean result = true;
-    
-    if(this.getSide()== IChess.Side.NORTH){
-      if(x>2||y<3||y>5){
-        result=false;
-      }
-      else{
-        if((this.getRow()==x&&Math.abs(this.getColumn()-y)==1)||(this.getColumn()==y&&Math.abs(this.getRow()-x)==1)){
-          result=true;
+        if(Math.abs(this.getRow() - x) <= 1 && Math.abs(this.getColumn() - y) <= 1){
+          return true;
         }
         else{
-          result=false;
+          return false;
         }
-      }
-    }
- 
-    else{
-      if(x<7||y<3||y>5){
-        result=false;
-      }
-      else{
-        if((this.getRow()==x&&Math.abs(this.getColumn()-y)==1)||(this.getColumn()==y&&Math.abs(this.getRow()-x)==1)){
-          result=true;
-        }
-        else{
-          result=false;
-        }
-      }
-    }
-    return result;
   }
   
 }
