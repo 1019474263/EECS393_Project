@@ -56,12 +56,20 @@ public class Shogi implements ChessGame{
   game.addPiece(new PawnPiece(game,Color.RED,"P",Shogi.Side.NORTH,null),3,4);
   game.addPiece(new PawnPiece(game,Color.RED,"P",Shogi.Side.NORTH,null),3,6);
   game.addPiece(new PawnPiece(game,Color.RED,"P",Shogi.Side.NORTH,null),3,8);
-  game.addPiece(new PawnPiece(game,Color.WHITE,"P",Shogi.Side.SOUTH,null),6,0);
+  game.addPiece(new PawnPiece(game,Color.RED,"P",Shogi.Side.NORTH,null),3,1);
+  game.addPiece(new PawnPiece(game,Color.RED,"P",Shogi.Side.NORTH,null),3,3);
+  game.addPiece(new PawnPiece(game,Color.RED,"P",Shogi.Side.NORTH,null),3,5);
+  game.addPiece(new PawnPiece(game,Color.RED,"P",Shogi.Side.NORTH,null),3,7);
+  game.addPiece(new PawnPiece(game,Color.WHITE,"P",Shogi.Side.SOUTH,null),6,7);
   game.addPiece(new PawnPiece(game,Color.WHITE,"P",Shogi.Side.SOUTH,null),6,2);
   game.addPiece(new PawnPiece(game,Color.WHITE,"P",Shogi.Side.SOUTH,null),6,4);
   game.addPiece(new PawnPiece(game,Color.WHITE,"P",Shogi.Side.SOUTH,null),6,6);
   game.addPiece(new PawnPiece(game,Color.WHITE,"P",Shogi.Side.SOUTH,null),6,8);
-  
+  game.addPiece(new PawnPiece(game,Color.WHITE,"P",Shogi.Side.SOUTH,null),6,1);
+  game.addPiece(new PawnPiece(game,Color.WHITE,"P",Shogi.Side.SOUTH,null),6,0);
+  game.addPiece(new PawnPiece(game,Color.WHITE,"P",Shogi.Side.SOUTH,null),6,3);
+  game.addPiece(new PawnPiece(game,Color.WHITE,"P",Shogi.Side.SOUTH,null),6,5);
+  game.addPiece(new PawnPiece(game,Color.WHITE,"P",Shogi.Side.SOUTH,null),6,7);
   }
   
   /*check whether it is the right side to play*/
