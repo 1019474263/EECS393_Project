@@ -44,13 +44,8 @@ public class IPawnPiece extends Piece{
   /*check whether the pawn piece has crossed middle of board*/
   @Override
   public void moveDone(){
-    if(this.getSide()== IChess.Side.NORTH&&this.getRow()==7){
-        String text = JOptionPane.showInputDialog(this, "(input Q,B,C or K):");
-        promoted(text,this.getSide(),this.getRow(),this.getColumn());
-    }
-    
-    else if(this.getSide()== IChess.Side.SOUTH&&this.getRow()==0){
-        String text = JOptionPane.showInputDialog(this, "(input Q,B,C or K):");
+    if(this.getSide()== IChess.Side.NORTH&&this.getRow()==7 || this.getSide()== IChess.Side.SOUTH&&this.getRow()==0){
+        String text = JOptionPane.showInputDialog("Type which piece to promote to", "(input Q,B,C or K):");
         promoted(text,this.getSide(),this.getRow(),this.getColumn());
     }
   }
