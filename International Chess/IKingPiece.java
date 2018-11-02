@@ -13,7 +13,7 @@ public class IKingPiece extends Piece{
 
     @Override
     public void moveDone() {
-      System.out.println(isShifted);
+        isMoved = true;
         if(isShifted){
             IChess.Side s = this.getSide();
             Color c = Color.WHITE;
@@ -30,6 +30,7 @@ public class IKingPiece extends Piece{
                 chessBoard.addPiece(new CastlePiece(chessBoard,c, "C", s,null),this.getRow(),5);
                 chessBoard.removePiece(this.getRow(),this.getColumn());
             }
+            isShifted = false;
         }
     }
 
@@ -38,7 +39,6 @@ public class IKingPiece extends Piece{
   public boolean isLegalNonCaptureMove(int x, int y){
     /*store the result*/
         if(Math.abs(this.getRow() - x) <= 1 && Math.abs(this.getColumn() - y) <= 1){
-            isMoved = true;
           return true;
         }
         else{
