@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 import java.awt.*;
 
 /*a test class for CannonPiece*/
-public class PawnPieceTest{
+public class IKnightTest {
     /*test isLegalCaptureMove method*/
     @Test
     public void testIsLegalCaptureMove(){

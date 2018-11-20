@@ -7,7 +7,7 @@ public class PawnPieceTester{
   /*test isLegalNonCaptureMove method*/
   public void testIsLegalNonCaptureMove(){
     ChessBoard test = new ChessBoard(10,9,new Display(), new Xiangqi());
-    Piece a = new PawnPieceTest(test,Color.RED, "P", Xiangqi.Side.NORTH,null);
+    Piece a = new PawnPiece(test,Color.RED, "P", Xiangqi.Side.NORTH,null);
     test.addPiece(a,3,0);
     
     assertTrue(a.isLegalNonCaptureMove(4,0));
@@ -18,7 +18,7 @@ public class PawnPieceTester{
   /*test moveDone method*/
   public void testMoveDone(){
     ChessBoard test = new ChessBoard(10,9,new Display(), new Xiangqi());
-    Piece a = new PawnPieceTest(test,Color.RED, "P", Xiangqi.Side.NORTH,null);
+    Piece a = new PawnPiece(test,Color.RED, "P", Xiangqi.Side.NORTH,null);
     test.addPiece(a,5,0);
     
     a.moveDone();
