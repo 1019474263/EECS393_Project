@@ -15,25 +15,24 @@ public class BishopPiece extends Piece{
     boolean reachable = false;
     boolean hasObstacle = false;
     /*store the result*/
-
-    if(Math.abs(this.getRow() - x) == Math.abs(this.getColumn() - y)) {
-      reachable = true;
-      int i = this.getRow();
-      int j = this.getColumn();
-      int stepx = (x - i)/Math.abs(x - i);
-      int stepy = (y - j)/Math.abs(y - j);
-      while( i != x && j != y && !hasObstacle){
-        if(chessBoard.hasPiece(i+stepx,j+stepy) && i+stepx != x && j + stepy != y){
-          hasObstacle = true;
+    if(x != this.getRow() || y != this.getColumn()) {
+      if (Math.abs(this.getRow() - x) == Math.abs(this.getColumn() - y)) {
+        reachable = true;
+        int i = this.getRow();
+        int j = this.getColumn();
+        int stepx = (x - i) / Math.abs(x - i);
+        int stepy = (y - j) / Math.abs(y - j);
+        while (i != x && j != y && !hasObstacle) {
+          if (chessBoard.hasPiece(i + stepx, j + stepy) && i + stepx != x && j + stepy != y) {
+            hasObstacle = true;
+          } else {
+            i = stepx + i;
+            j = stepy + j;
+          }
         }
-        else{
-          i = stepx + i;
-          j = stepy + j;
-        }
+      } else {
+        reachable = false;
       }
-    }
-    else{
-      reachable = false;
     }
 
     return !hasObstacle && reachable;

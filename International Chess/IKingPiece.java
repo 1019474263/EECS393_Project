@@ -38,12 +38,16 @@ public class IKingPiece extends Piece{
    * while there is an empty square*/
   public boolean isLegalNonCaptureMove(int x, int y){
     /*store the result*/
-        if(Math.abs(this.getRow() - x) <= 1 && Math.abs(this.getColumn() - y) <= 1){
-          return true;
-        }
-        else{
+      if(x == this.getRow() && y == this.getColumn()){
           return false;
-        }
+      }
+      else {
+          if (Math.abs(this.getRow() - x) <= 1 && Math.abs(this.getColumn() - y) <= 1) {
+              return true;
+          } else {
+              return false;
+          }
+      }
   }
 
   public boolean isMoved(){
@@ -52,7 +56,7 @@ public class IKingPiece extends Piece{
 
     public boolean isLegalCaptureMove(int x, int y) {
         if(this.getSide() == IChess.Side.NORTH) {
-            if (chessBoard.getPiece(x, y).getSide() != this.getSide() && x - this.getRow() == 1 && Math.abs(y - this.getColumn()) == 1) {
+            if (chessBoard.getPiece(x, y).getSide() != this.getSide() && Math.abs(x - this.getRow()) <= 1 && Math.abs(y - this.getColumn()) <= 1) {
                 return true;
             } else {
                 if (chessBoard.getPiece(x,y).getLabel().equals("C") && chessBoard.getPiece(x, y).getSide() == this.getSide()){
@@ -88,12 +92,17 @@ public class IKingPiece extends Piece{
                     }
                 }
                 else{
-                    return false;
+                    if (chessBoard.getPiece(x, y).getSide() != this.getSide() && Math.abs(x - this.getRow()) <= 1 && Math.abs(y - this.getColumn()) <= 1) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
                 }
             }
         }
         else{
-            if (chessBoard.getPiece(x, y).getSide() != this.getSide() && x - this.getRow() == 1 && Math.abs(y - this.getColumn()) == 1) {
+            if (chessBoard.getPiece(x, y).getSide() != this.getSide() && Math.abs(x - this.getRow()) <= 1 && Math.abs(y - this.getColumn()) <= 1) {
                 return true;
             } else {
                 if (chessBoard.getPiece(x,y).getLabel().equals("C") && chessBoard.getPiece(x, y).getSide() == this.getSide()){
@@ -127,7 +136,12 @@ public class IKingPiece extends Piece{
                     }
                 }
                 else{
-                    return false;
+                    if (chessBoard.getPiece(x, y).getSide() != this.getSide() && Math.abs(x - this.getRow()) <= 1 && Math.abs(y - this.getColumn()) <= 1) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
                 }
             }
         }
