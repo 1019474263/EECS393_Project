@@ -21,4 +21,12 @@ public class JungleDisplay extends Display {
 	    j.setBackground(Color.green);
 	    j.setText("Trap");
   }
+
+public void displayFilledSquare(JButton j, int x, int y, JunglePiece piece) {
+	j.setIcon(piece.getIcon());
+    j.setBackground(piece.getColor());
+    j.setText(piece.getLabel());
+}
+
+
 }
