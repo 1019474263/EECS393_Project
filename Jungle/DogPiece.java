@@ -2,10 +2,10 @@ import java.awt.Color;
 
 import javax.swing.Icon;
 
-public class DogPiece extends Piece{
+public class DogPiece extends JunglePiece{
 	/* create a DogPiece */
-	public DogPiece(ChessBoard board, Color color, String label, Jungle.Side side, Icon icon) {
-		super(board, color, label, side, icon);
+	public DogPiece(JungleChessBoard game, Color color, String label, Jungle.Side side, Icon icon) {
+		super(game, color, label, side, icon);
 	}
 
 	/*

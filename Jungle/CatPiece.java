@@ -1,11 +1,12 @@
 import java.awt.Color;
+
 import javax.swing.Icon;
 
-public class CatPiece extends Piece {
+public class CatPiece extends JunglePiece {
 
 	/* create a CatPiece */
-	public CatPiece(ChessBoard board, Color color, String label, Jungle.Side side, Icon icon) {
-		super(board, color, label, side, icon);
+	public CatPiece(JungleChessBoard game, Color color, String label, Jungle.Side side, Icon icon) {
+		super(game, color, label, side, icon);
 	}
 
 	/*

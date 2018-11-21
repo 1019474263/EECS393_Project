@@ -1,6 +1,6 @@
 import java.awt.Color;
 
-public class Jungle implements ChessGame{
+public class Jungle implements JungleChessGame{
 
  /*check whether game starts*/
   private boolean start = true;
@@ -14,7 +14,7 @@ public class Jungle implements ChessGame{
   firstSide = Side.NORTH;
   
   /*create the board*/
-  ChessBoard game = new ChessBoard(9,7,new Display(), this);
+  JungleChessBoard game = new JungleChessBoard(9,7,new JungleDisplay(), this);
 
   game.addPiece(new CatPiece(game,Color.RED, "CAT", Jungle.Side.NORTH,null),1,5);
   game.addPiece(new CatPiece(game,Color.WHITE, "CAT", Jungle.Side.SOUTH,null),7,1);
@@ -44,8 +44,7 @@ public class Jungle implements ChessGame{
   }
   
   /*check whether it is the right side to play*/
-  @Override
-  public boolean legalPieceToPlace(Piece piece){
+  public boolean legalPieceToPlace(JunglePiece piece){
     if(start==true&&piece.getSide()==firstSide){
       return true;
     }
@@ -61,7 +60,7 @@ public class Jungle implements ChessGame{
   }
   
   /*check whether it is legal to move and then move the piece*/
-  public boolean makeMove(Piece piece,int x, int y){
+  public boolean makeMove(JunglePiece piece,int x, int y){
     
     if(piece.isLegalMove(x,y)==true){
       piece.getChessBoard().removePiece(piece.getRow(),piece.getColumn());

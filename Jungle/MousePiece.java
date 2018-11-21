@@ -2,10 +2,10 @@ import java.awt.Color;
 
 import javax.swing.Icon;
 
-public class MousePiece extends Piece{
+public class MousePiece extends JunglePiece{
 	/* create a mouse Piece */
-	public MousePiece(ChessBoard board, Color color, String label, Jungle.Side side, Icon icon) {
-		super(board, color, label, side, icon);
+	public MousePiece(JungleChessBoard game, Color color, String label, Jungle.Side side, Icon icon) {
+		super(game, color, label, side, icon);
 	}
 
 	/*
