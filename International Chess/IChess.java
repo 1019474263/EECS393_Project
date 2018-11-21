@@ -101,11 +101,6 @@ public class IChess implements ChessGame{
       return false;
     }
   }
-  
-  /*decide where to start when you click RUN*/
-  public static void main(String[] args){
-    new IChess();
-  }
     
 }
    
