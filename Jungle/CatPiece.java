@@ -1,4 +1,5 @@
 import java.awt.Color;
+
 import javax.swing.Icon;
 
 public class CatPiece extends Piece {

@@ -2,8 +2,6 @@ import java.awt.Color;
 
 import javax.swing.Icon;
 
-import ChessGame.Side;
-
 public class JungleElephantPiece extends Piece{
 	/* create a Elephant Piece */
 	public JungleElephantPiece(ChessBoard board, Color color, String label, Jungle.Side side, Icon icon) {
