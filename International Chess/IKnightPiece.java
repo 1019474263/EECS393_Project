@@ -13,7 +13,7 @@ public class IKnightPiece extends Piece{
   /*check whether the piece can move to input position
    * while there is an empty square*/
   public boolean isLegalNonCaptureMove(int x, int y){
-    if(Math.abs(x - this.getRow()) == 2 && Math.abs(y - this.getColumn()) == 1 || Math.abs(x - this.getRow()) == 1 && Math.abs(y - this.getColumn()) == 2 ){
+    if((Math.abs(x - this.getRow()) == 2 && Math.abs(y - this.getColumn()) == 1) || (Math.abs(x - this.getRow()) == 1 && Math.abs(y - this.getColumn()) == 2)){
       return true;
     }
     else{

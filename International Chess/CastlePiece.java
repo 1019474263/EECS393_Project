@@ -3,6 +3,7 @@ import javax.swing.*;
 
 /*represent a RookPiece*/
 public class CastlePiece extends Piece{
+  private ChessBoard chessBoard = getChessBoard();
   private boolean isMoved = false;
   private boolean isShifted = false;
   /*create a RookPiece*/
@@ -18,54 +19,41 @@ public class CastlePiece extends Piece{
   /*check whether the piece can move to input position
    * while there is an empty square*/
   public boolean isLegalNonCaptureMove(int x, int y){
+    boolean reachable = false;
+    boolean hasObstacle = false;
     /*store the result*/
-    boolean result = true;
-    if(x==getRow()&&y!=getColumn()){
-      int min = 0;
-      int max = 0;
-      if(y>getColumn()){
-        max = y;
-        min = getColumn();
-      }
-      else{
-        max = getColumn();
-        min = y;
-      }
-      
-      /*check whether there are pieces between this piece and the input position*/
-      for(int a=min+1;a<max;a++){
-        if(this.getChessBoard().hasPiece(x,a)==true){
-          result = false;
+    if(x != this.getRow() || y != this.getColumn()) {
+      if ((Math.abs(this.getRow() - x) > 0 && y == this.getColumn()) || (Math.abs(this.getColumn() - y) > 0 && x == this.getRow())) {
+        reachable = true;
+        if(Math.abs(this.getRow() - x) > 0){
+          int i = this.getRow();
+          int stepx = (x - i) / Math.abs(x - i);
+          while (i != x && !hasObstacle) {
+            if (chessBoard.hasPiece(i + stepx, y) && (i + stepx != x)) {
+              hasObstacle = true;
+            } else {
+              i = stepx + i;
+            }
+          }
         }
-      }
-    }
-    else if(x!=getRow()&&y==getColumn()){
-      int min = 0;
-      int max = 0;
-      if(x>getRow()){
-        max = x;
-        min = getRow();
-      }
-      else{
-        max = getRow();
-        min = x;
-      }
-      
-       /*check whether there are pieces between this piece and the input position*/      
-      for(int a=min+1;a<max;a++){
-        if(this.getChessBoard().hasPiece(a,y)==true){
-          result = false;
+        else{
+          int j = this.getColumn();
+          int stepy = (y - j) / Math.abs(y - j);
+          while (j != y && !hasObstacle) {
+            if (chessBoard.hasPiece(x, j + stepy) && j + stepy != y) {
+              hasObstacle = true;
+            } else {
+              j = stepy + j;
+            }
+          }
         }
+
+      } else {
+        reachable = false;
       }
-    }
-    else{
-      result = false;
     }
 
-    if(result){
-        isMoved = true;
-    }
-    return result;
+    return !hasObstacle && reachable;
   }
   
 }

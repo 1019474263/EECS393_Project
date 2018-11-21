@@ -13,11 +13,14 @@ public class QueenPiece extends Piece{
   /*check whether the piece can move to input position
    * while there is an empty square*/
   public boolean isLegalNonCaptureMove(int x, int y){
-    if(canMoveHV(x,y)){
-      return true;
-    }
-    else if(canMoveCross(x,y)){
-      return true;
+    if(x != this.getRow() || y != this.getColumn()) {
+      if (canMoveHV(x, y)) {
+        return true;
+      } else if (canMoveCross(x, y)) {
+        return true;
+      } else {
+        return false;
+      }
     }
     else{
       return false;
