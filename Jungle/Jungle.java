@@ -1,6 +1,6 @@
 import java.awt.Color;
 
-public class Jungle implements ChessGame{
+public class Jungle implements JungleChessGame{
 
  /*check whether game starts*/
   private boolean start = true;
@@ -44,7 +44,6 @@ public class Jungle implements ChessGame{
   }
   
   /*check whether it is the right side to play*/
-  @Override
   public boolean legalPieceToPlace(JunglePiece piece){
     if(start==true&&piece.getSide()==firstSide){
       return true;

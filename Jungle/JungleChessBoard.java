@@ -14,7 +14,7 @@ public class JungleChessBoard extends JFrame implements ActionListener{
 	  /*create a instance of ChessBoardDisply*/
 	  private JungleDisplay chessDisplay = null;
 	  /*create a instance of ChessGame*/
-	  private ChessGame chessVersion = null;
+	  private JungleChessGame chessVersion = null;
 	  /*record the positions of first click and second click*/
 	  private int x0=0, y0=0, x1=0, x2=0, y1=0, y2=0;
 	  /*create a piece array*/
@@ -34,7 +34,7 @@ public class JungleChessBoard extends JFrame implements ActionListener{
 	  
 	  /*this constructor is used to create a new chess board
 	   * it needs rows, columns, a ChessBoardDisply instance , a ChessGame instance*/
-	  public JungleChessBoard(int rows, int columns, JungleDisplay chessDisplay, ChessGame chessVersion){
+	  public JungleChessBoard(int rows, int columns, JungleDisplay chessDisplay, JungleChessGame chessVersion){
 	    try {
 	      UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 	    }

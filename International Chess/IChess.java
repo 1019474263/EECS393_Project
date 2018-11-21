@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /*a class represent chess game, Xiangqi!*/
-public class IChess implements ChessGame{
+public class IChess implements JungleChessGame{
   /*check whether game starts*/
   private boolean start = true;
   /*store the side which will start game(click firstly)*/
