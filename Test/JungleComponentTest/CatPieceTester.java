@@ -1,4 +1,3 @@
-package JungleComponentTest;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.awt.*;
@@ -10,7 +9,7 @@ public class CatPieceTester{
   @Test
   public void testIsLegalCaptureMove(){
     JungleChessBoard test = new JungleChessBoard(10,9,new JungleDisplay(), new Jungle());
-    Piece a = new CatPiece(test,Color.RED, "R", Jungle.Side.NORTH,null);
+    JunglePiece a = new CatPiece(test,Color.RED, "R", Jungle.Side.NORTH,null);
     test.addPiece(a,2,1);
     
     test.addPiece(new CatPiece(test, Color.WHITE, "R",Jungle.Side.SOUTH,null),2,7);

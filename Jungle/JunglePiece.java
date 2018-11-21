@@ -11,7 +11,7 @@ public abstract class JunglePiece{
   /*store the name of piece*/
   private String label = "";
   /*store the side of piece*/
-  private IChess.Side side = null;
+  private Jungle.Side side = null;
   /*store the icon of the piece*/
   private Icon icon = null;
   /*store the position of piece*/
@@ -19,7 +19,7 @@ public abstract class JunglePiece{
   private int y=0;
   
   /*create a piece*/
-  public JunglePiece(JungleChessBoard game, Color color, String label, IChess.Side side, Icon icon){
+  public JunglePiece(JungleChessBoard game, Color color, String label, Jungle.Side side, Icon icon){
     this.board = game;
     this.color = color;
     this.label = label;
@@ -43,7 +43,7 @@ public abstract class JunglePiece{
   }
   
   /*get the side of piece*/
-  public IChess.Side getSide(){
+  public Jungle.Side getSide(){
     return side;
   }
   
