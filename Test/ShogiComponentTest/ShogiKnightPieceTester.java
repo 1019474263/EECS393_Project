@@ -4,7 +4,7 @@ import java.awt.*;
 
 
 /*a test class for KnightPiece*/
-public class KnightPieceTester{
+public class ShogiKnightPieceTester{
   
   /*test isLegalNonCaptureMove method*/
   @Test

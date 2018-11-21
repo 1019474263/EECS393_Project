@@ -32,4 +32,3 @@ public class CastleTest{
         assertFalse(a.isLegalNonCaptureMove(6,6));/*test many*/
     }
 }
-          

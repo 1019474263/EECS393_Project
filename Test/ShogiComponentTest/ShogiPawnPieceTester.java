@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 import java.awt.*;
 
 /*a test class for PawnPiece*/
-public class PawnPieceTester{
+public class ShogiPawnPieceTester{
   
   /*test isLegalNonCaptureMove method*/
   public void testIsLegalNonCaptureMove(){
