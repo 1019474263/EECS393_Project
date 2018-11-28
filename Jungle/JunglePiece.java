@@ -1,6 +1,7 @@
 import java.awt.Color;
-
 import javax.swing.Icon;
+
+import JungleChessGame.Side;
 
 /*an abstract class contain the same methods all knids of piece have*/
 public abstract class JunglePiece{
@@ -14,6 +15,8 @@ public abstract class JunglePiece{
   private Jungle.Side side = null;
   /*store the icon of the piece*/
   private Icon icon = null;
+  /*store the size of the piece*/
+  protected int size = 0;
   /*store the position of piece*/
   private int x=0;
   private int y=0;
@@ -45,6 +48,12 @@ public abstract class JunglePiece{
   /*get the side of piece*/
   public Jungle.Side getSide(){
     return side;
+  }
+  
+  public int getSize() {
+	  if(this.getChessBoard().isTrap(this.getRow(), this.getColumn()))
+		  return -1;
+	  return size;
   }
   
   /*get the icon of piece*/
@@ -92,19 +101,40 @@ public abstract class JunglePiece{
     }
   }
   
-  /*method stub for isLegalNonCaptureMove*/
-  public abstract boolean isLegalNonCaptureMove(int x, int y);
+  private boolean isLargerSize(JunglePiece piece) {
+	  if (this.getSize() < piece.getSize() && !(this.getSize()==0 && piece.getSize()==7))
+		  return false;
+	  else
+		  return true;
+  }
+  
+  public boolean isLegalNonRiverMove(int x, int y) {
+	  if (!this.getChessBoard().isRiver(x, y)&&((Math.abs(x - this.getRow()) == 1 && y == this.getColumn()) || (x == this.getRow() && Math.abs(y - this.getColumn()) == 1))) {
+		  if(this.getSide() == Jungle.Side.NORTH && !this.getChessBoard().isNorthBase(x, y))
+			  return true;
+		  else if(this.getSide() == Jungle.Side.SOUTH && !this.getChessBoard().isSouthBase(x, y))
+			  return true;
+		} 
+		return false;
+  }
+	/*
+	 * check whether the piece can move to input position while there is an empty
+	 * legal square
+	 */
+	public abstract boolean isLegalNonCaptureMove(int x, int y);
   
   /*check whether this piece can move to the input position
    * while there is another piece there*/
   public boolean isLegalCaptureMove(int x, int y){
-    if(this.isLegalNonCaptureMove(x,y)==true&&this.getChessBoard().getPiece(x,y).getSide()!=this.getSide()){
+	  JunglePiece otherPiece = this.getChessBoard().getPiece(x,y);
+    if(this.isLegalNonCaptureMove(x,y)==true&&otherPiece.getSide()!=this.getSide()&&this.isLargerSize(otherPiece)){
       return true;
     }
     else{
       return false;
     }
   }
+
 }
   
   

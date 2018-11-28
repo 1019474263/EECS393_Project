@@ -124,8 +124,10 @@ public class JungleChessBoard extends JFrame implements ActionListener{
 	  /*this method is used to remove piece from chess board*/
 	  public void removePiece(int x, int y){
 		  p[x][y] = null;
-		  if(river_row[x] == 1 && river_column[y] == 1)
+		  if(isRiver(x, y))
 			  chessDisplay.displayRiverSquare(j[x][y], x, y);
+		  else if(isTrap(x, y))
+			  chessDisplay.displayTrapSquare(j[x][y], x, y);
 		  else
 			  chessDisplay.displayEmptySquare(j[x][y],x,y);
 	  }
@@ -151,6 +153,12 @@ public class JungleChessBoard extends JFrame implements ActionListener{
 	    return columns;
 	  }
 	  
+	  public boolean isRiver(int x, int y) {
+		  if(river_row[x] == 1 && river_column[y] == 1)
+			  return true;
+		  return false;
+	  }
+	  
 	  public boolean isBase(int x, int y) {
 		  return (base[0][0]==x && base[0][1] == y) || (base[1][0] == x && base[1][1] ==y);
 	  }
@@ -166,6 +174,14 @@ public class JungleChessBoard extends JFrame implements ActionListener{
 			  return true;
 		  else
 			  return false;
+	  }
+	  
+	  public boolean isNorthBase(int x, int y) {
+		  return (base[0][0] == x && base[0][1] == y);
+	  }
+	  
+	  public boolean isSouthBase(int x, int y) {
+		  return (base[1][0] == x && base[1][1] == y);
 	  }
   
 }

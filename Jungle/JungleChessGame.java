@@ -11,5 +11,4 @@ public interface JungleChessGame{
   
   /* a inner class to define two different player*/
   public enum Side { NORTH, SOUTH }
-
 }
