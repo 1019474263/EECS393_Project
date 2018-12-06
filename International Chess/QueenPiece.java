@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.ArrayList;
 import javax.swing.*;
 
 /*represent a GuardPiece*/
@@ -14,15 +13,11 @@ public class QueenPiece extends Piece{
   /*check whether the piece can move to input position
    * while there is an empty square*/
   public boolean isLegalNonCaptureMove(int x, int y){
-    if((x < 8 && y < 8)  &&(x >= 0 && y >= 0)) {
-      if (x != this.getRow() || y != this.getColumn()) {
-        if (canMoveHV(x, y)) {
-          return true;
-        } else if (canMoveCross(x, y)) {
-          return true;
-        } else {
-          return false;
-        }
+    if(x != this.getRow() || y != this.getColumn()) {
+      if (canMoveHV(x, y)) {
+        return true;
+      } else if (canMoveCross(x, y)) {
+        return true;
       } else {
         return false;
       }
@@ -105,115 +100,6 @@ public class QueenPiece extends Piece{
       reachable = false;
     }
     return !hasObstacle && reachable;
-  }
-
-  public ArrayList<Move> getMoves(){
-    ArrayList<Move> moves = new ArrayList<Move>();
-    for(int i = 1; i < 8; i++) {
-      if(chessBoard.hasPiece(this.getRow(),this.getColumn() + i)){
-        if(isLegalCaptureMove(this.getRow(),this.getColumn() + i)){
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow(), this.getColumn() + i, false));
-        }
-      }
-      else {
-        if (isLegalNonCaptureMove(this.getRow(), this.getColumn() + i)) {
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow(), this.getColumn() + i, false));
-        }
-      }
-    }
-
-    for(int i = 1; i < 8; i++) {
-      if(chessBoard.hasPiece(this.getRow() ,this.getColumn() - i)){
-        if(isLegalCaptureMove(this.getRow() ,this.getColumn() - i)){
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow(), this.getColumn() - i, false));
-        }
-      }
-      else {
-        if (isLegalNonCaptureMove(this.getRow() , this.getColumn() - i)) {
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() , this.getColumn() - i, false));
-        }
-      }
-    }
-
-    for(int i = 1; i < 8; i++) {
-      if(chessBoard.hasPiece(this.getRow() + i,this.getColumn() )){
-        if(isLegalCaptureMove(this.getRow() + i,this.getColumn() )){
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() + i, this.getColumn(), false));
-        }
-      }
-      else {
-        if (isLegalNonCaptureMove(this.getRow() + i, this.getColumn() )) {
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() + i, this.getColumn() , false));
-        }
-      }
-    }
-
-    for(int i = 1; i < 8; i++) {
-      if(chessBoard.hasPiece(this.getRow() - i,this.getColumn() )){
-        if(isLegalCaptureMove(this.getRow() - i,this.getColumn() )){
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() - i, this.getColumn() , false));
-        }
-      }
-      else {
-        if (isLegalNonCaptureMove(this.getRow() - i, this.getColumn() )) {
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() - i, this.getColumn() , false));
-        }
-      }
-    }
-    for(int i = 1; i < 8; i++) {
-      if(chessBoard.hasPiece(this.getRow() + i,this.getColumn() + i)){
-        if(isLegalCaptureMove(this.getRow() + i,this.getColumn() + i)){
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() + i, this.getColumn() + i, false));
-        }
-      }
-      else {
-        if (isLegalNonCaptureMove(this.getRow() + i, this.getColumn() + i)) {
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() + i, this.getColumn() + i, false));
-        }
-      }
-    }
-
-    for(int i = 1; i < 8; i++) {
-      if(chessBoard.hasPiece(this.getRow() - i,this.getColumn() + i)){
-        if(isLegalCaptureMove(this.getRow() - i,this.getColumn() + i)){
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() - i, this.getColumn() + i, false));
-        }
-      }
-      else {
-        if (isLegalNonCaptureMove(this.getRow() - i, this.getColumn() + i)) {
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() - i, this.getColumn() + i, false));
-        }
-      }
-    }
-
-    for(int i = 1; i < 8; i++) {
-      if(chessBoard.hasPiece(this.getRow() + i,this.getColumn() - i)){
-        if(isLegalCaptureMove(this.getRow() + i,this.getColumn() - i)){
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() + i, this.getColumn() - i, false));
-        }
-      }
-      else {
-        if (isLegalNonCaptureMove(this.getRow() + i, this.getColumn() - i)) {
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() + i, this.getColumn() - i, false));
-        }
-      }
-    }
-
-    for(int i = 1; i < 8; i++) {
-      if(chessBoard.hasPiece(this.getRow() - i,this.getColumn() - i)){
-        if(isLegalCaptureMove(this.getRow() - i,this.getColumn() - i)){
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() - i, this.getColumn() - i, false));
-        }
-      }
-      else {
-        if (isLegalNonCaptureMove(this.getRow() - i, this.getColumn() - i)) {
-          moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() - i, this.getColumn() - i, false));
-        }
-      }
-    }
-
-    return moves;
-
   }
   
 }

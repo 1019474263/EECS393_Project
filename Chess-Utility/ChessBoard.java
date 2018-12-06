@@ -108,25 +108,15 @@ public class ChessBoard extends JFrame implements ActionListener{
   p[x][y] = null;
   chessDisplay.displayEmptySquare(j[x][y],x,y);
   }
-
   
   /*this method is used to check whether there is a piece*/
   public boolean hasPiece(int x, int y){
-    if((x < 8 && y < 8)  &&(x >= 0 && y >= 0) ){
-      return p[x][y] != null;
-    }
-    else{
-      return false;
-    }
+    return p[x][y]!=null;
   }
   
   /*this method is used to get the piece in this location*/
   public Piece getPiece(int x, int y){
     return p[x][y];
-  }
-
-  public Piece[][] getPieces(){
-    return p;
   }
 
   /*helper method
@@ -139,7 +129,6 @@ public class ChessBoard extends JFrame implements ActionListener{
   public int getColumn(){
     return columns;
   }
-
 
 }
    

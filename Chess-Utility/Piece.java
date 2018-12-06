@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.ArrayList;
 import javax.swing.*;
 
 /*an abstract class contain the same methods all knids of piece have*/
@@ -94,10 +93,6 @@ public abstract class Piece {
   
   /*method stub for isLegalNonCaptureMove*/
   public abstract boolean isLegalNonCaptureMove(int x, int y);
-
-  public ArrayList<Move> getMoves(){
-    return new ArrayList<Move>();
-  };
   
   /*check whether this piece can move to the input position
    * while there is another piece there*/
@@ -109,8 +104,6 @@ public abstract class Piece {
       return false;
     }
   }
-
-
 }
   
   
