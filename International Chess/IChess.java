@@ -19,7 +19,7 @@ public class IChess implements ChessGame{
   display = new Display();
   /*create the board*/
   this.game = new ChessBoard(8,8,display, this);
-  this.isAI = false;
+  this.isAI = true;
   
   /*add RookPiece*/
   game.addPiece(new CastlePiece(game,Color.RED, "C", IChess.Side.NORTH,null),0,0);
@@ -155,9 +155,9 @@ public class IChess implements ChessGame{
 
   public static void main(String[] args){
     IChess a = new IChess();
-    //Move m = new Move(1,4,2,4,false);
-    //a.AI.makeMove(a,m);
-    //ArrayList<Move> moves = a.getMoves();
+    Move m = new Move(1,4,2,4,false);
+    a.AI.makeMove(a,m);
+    ArrayList<Move> moves = a.getMoves();
 
   }
 
