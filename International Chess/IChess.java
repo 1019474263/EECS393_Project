@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class IChess implements ChessGame{
   /*check whether game starts*/
   private boolean isAI = false;
-  private MinMaxAI AI = new MinMaxAI();
+  private MinMaxAI AI = new MinMaxAI(2,121);
   private Side playerSide = Side.SOUTH;
   private Side AISide = Side.NORTH;
   /*store the current side which has moved its piece*/
@@ -101,6 +101,8 @@ public class IChess implements ChessGame{
         piece.getChessBoard().removePiece(piece.getRow(), piece.getColumn());
         piece.getChessBoard().addPiece(piece, x, y);
         piece.moveDone();
+        Move next = AI.generateNextMove(this);
+        AI.makeMove(this,next);
         if (currentSide == Side.NORTH) {
           currentSide = Side.SOUTH;
         } else {
@@ -132,13 +134,13 @@ public class IChess implements ChessGame{
   }
 
 
-
   public ArrayList<Move> getMoves(){
     ArrayList<Move> moves = new ArrayList<Move>();
-
     for(int i = 0; i < 8; i ++){
       for(int j =0; j < 8; j ++){
-
+        if(this.game.hasPiece(i,j) && this.game.getPiece(i,j).getSide() == AISide){
+          moves.addAll(this.game.getPiece(i,j).getMoves());
+        }
       }
     }
 
@@ -153,7 +155,12 @@ public class IChess implements ChessGame{
 
   public static void main(String[] args){
     IChess a = new IChess();
-    MinMaxAI ai = new MinMaxAI();
+    Move m = new Move(1,4,2,4,false);
+    a.AI.makeMove(a,m);
+    ArrayList<Move> moves = a.getMoves();
+    for(int i = 0; i < moves.size(); i++){
+      System.out.println(moves.get(i).getX0() +" "+ moves.get(i).getY0() + " " + moves.get(i).getX1() + " " +moves.get(i).getY1());
+    }
 
   }
 

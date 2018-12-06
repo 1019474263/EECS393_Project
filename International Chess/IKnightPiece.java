@@ -10,6 +10,13 @@ public class IKnightPiece extends Piece{
   public IKnightPiece(ChessBoard board, Color color, String label, IChess.Side side, Icon icon){
     super(board, color, label, side, icon);
   }
+
+  public IKnightPiece getClone(){
+    Color newc = getColor();
+    String news = getLabel();
+    IChess.Side newsi = getSide();
+    return new IKnightPiece(null,newc,news,newsi,null);
+  }
   
   /*check whether the piece can move to input position
    * while there is an empty square*/

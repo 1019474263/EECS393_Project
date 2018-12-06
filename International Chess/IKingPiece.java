@@ -12,6 +12,13 @@ public class IKingPiece extends Piece{
     super(board, color, label, side, icon);
   }
 
+    public IKingPiece getClone(){
+        Color newc = getColor();
+        String news = getLabel();
+        IChess.Side newsi = getSide();
+        return new IKingPiece(null,newc,news,newsi,null);
+    }
+
     @Override
     public void moveDone() {
         isMoved = true;

@@ -14,6 +14,14 @@ public class IPawnPiece extends Piece{
   
   /*check whether the piece can move to input position
    * while there is an empty square*/
+
+    public IPawnPiece getClone(){
+        Color newc = getColor();
+        String news = getLabel();
+        IChess.Side newsi = getSide();
+        return new IPawnPiece(null,newc,news,newsi,null);
+    }
+
   public boolean isLegalNonCaptureMove(int x, int y){
     boolean result=false;
     if((x < 8 && y < 8)  &&(x >= 0 && y >= 0)) {
@@ -98,6 +106,10 @@ public class IPawnPiece extends Piece{
                 if(!chessboard.hasPiece(this.getRow() + 2,this.getColumn())){
                     if(isLegalNonCaptureMove(this.getRow() + 2,this.getColumn())){
                         moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() + 2, this.getColumn(), false));
+                    }
+
+                    if(isLegalNonCaptureMove(this.getRow() + 1,this.getColumn())){
+                        moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() + 1, this.getColumn(), false));
                     }
                 }
             }

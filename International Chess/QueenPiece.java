@@ -9,6 +9,13 @@ public class QueenPiece extends Piece{
   public QueenPiece(ChessBoard board, Color color, String label, IChess.Side side, Icon icon){
     super(board, color, label, side, icon);
   }
+
+  public QueenPiece getClone(){
+    Color newc = getColor();
+    String news = getLabel();
+    IChess.Side newsi = getSide();
+    return new QueenPiece(null,newc,news,newsi,null);
+  }
   
   
   /*check whether the piece can move to input position

@@ -26,7 +26,7 @@ public abstract class Piece {
     this.side = side;
     this.icon = icon;
   }
-  
+
   /*get the board the piece is in*/
   public ChessBoard getChessBoard(){
     return board;
@@ -98,6 +98,10 @@ public abstract class Piece {
   public ArrayList<Move> getMoves(){
     return new ArrayList<Move>();
   };
+
+  public Piece getClone(){
+    return null;
+  }
   
   /*check whether this piece can move to the input position
    * while there is another piece there*/

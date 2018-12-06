@@ -9,6 +9,14 @@ public class BishopPiece extends Piece{
   public BishopPiece(ChessBoard board, Color color, String label, IChess.Side side, Icon icon){
     super(board, color, label, side, icon);
   }
+
+  public BishopPiece getClone(Piece[][] s){
+    Color newc = getColor();
+    String news = getLabel();
+    IChess.Side newsi = getSide();
+
+    return new BishopPiece(new ChessBoard(),newc,news,newsi,null);
+  }
   
   /*check whether the piece can move to input position
    * while there is an empty square*/
@@ -97,6 +105,8 @@ public class BishopPiece extends Piece{
 
     return moves;
   }
+
+
 
   public static void main(String[] args){
     ChessBoard test = new ChessBoard(8,8,new Display(), new IChess());

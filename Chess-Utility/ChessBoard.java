@@ -50,7 +50,6 @@ public class ChessBoard extends JFrame implements ActionListener{
         
       }
     }
-    
     this.setSize(500,500);
     this.setVisible(true);  
     
@@ -58,8 +57,18 @@ public class ChessBoard extends JFrame implements ActionListener{
     this.p= new Piece[rows][columns];
   
   }
-  
-  
+
+
+  public ChessBoard(){
+    this.rows=0;
+    this.columns=0;
+    this.chessDisplay = null;
+    this.chessVersion = null;
+    this.j= null;
+    this.p = null;
+    this.firstClick = false;
+  }
+
   /*this method will work every time you click the button in a chess board*/
   @Override
   public void actionPerformed(ActionEvent e){
