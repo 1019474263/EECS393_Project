@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /*represent a KingPiece*/
@@ -38,15 +39,19 @@ public class IKingPiece extends Piece{
    * while there is an empty square*/
   public boolean isLegalNonCaptureMove(int x, int y){
     /*store the result*/
-      if(x == this.getRow() && y == this.getColumn()){
-          return false;
-      }
-      else {
-          if (Math.abs(this.getRow() - x) <= 1 && Math.abs(this.getColumn() - y) <= 1) {
-              return true;
-          } else {
+      if((x < 8 && y < 8)  &&(x >= 0 && y >= 0) ){
+          if (x == this.getRow() && y == this.getColumn()) {
               return false;
+          } else {
+              if (Math.abs(this.getRow() - x) <= 1 && Math.abs(this.getColumn() - y) <= 1) {
+                  return true;
+              } else {
+                  return false;
+              }
           }
+      }
+      else{
+          return false;
       }
   }
 
@@ -55,95 +60,242 @@ public class IKingPiece extends Piece{
   }
 
     public boolean isLegalCaptureMove(int x, int y) {
-        if(this.getSide() == IChess.Side.NORTH) {
-            if (chessBoard.getPiece(x, y).getSide() != this.getSide() && Math.abs(x - this.getRow()) <= 1 && Math.abs(y - this.getColumn()) <= 1) {
-                return true;
-            } else {
-                if (chessBoard.getPiece(x,y).getLabel().equals("C") && chessBoard.getPiece(x, y).getSide() == this.getSide()){
-                    CastlePiece target = (CastlePiece)this.getChessBoard().getPiece(x,y);
-                    if(this.isMoved() || target.isMoved()){
-                        return false;
-                    }
-                    else{
-                        boolean shiftable = true;
-                        if(this.getColumn() > y){
-                            while(y != getColumn() - 1 && shiftable){
-                                y = y + 1;
-                                if(chessBoard.hasPiece(0,y)){
-                                    shiftable = false;
+        if((x < 8 && y < 8)  &&(x >= 0 && y >= 0) ) {
+            if (this.getSide() == IChess.Side.NORTH) {
+                if (chessBoard.getPiece(x, y).getSide() != this.getSide() && Math.abs(x - this.getRow()) <= 1 && Math.abs(y - this.getColumn()) <= 1) {
+                    return true;
+                } else {
+                    if (chessBoard.getPiece(x, y).getLabel().equals("C") && chessBoard.getPiece(x, y).getSide() == this.getSide()) {
+                        CastlePiece target = (CastlePiece) this.getChessBoard().getPiece(x, y);
+                        if (this.isMoved() || target.isMoved()) {
+                            return false;
+                        } else {
+                            boolean shiftable = true;
+                            if (this.getColumn() > y) {
+                                while (y != getColumn() - 1 && shiftable) {
+                                    y = y + 1;
+                                    if (chessBoard.hasPiece(0, y)) {
+                                        shiftable = false;
+                                    }
                                 }
+
+                            } else {
+                                while (y != getColumn() + 1 && shiftable) {
+                                    y = y - 1;
+                                    if (chessBoard.hasPiece(0, y)) {
+                                        shiftable = false;
+                                    }
+                                }
+
                             }
 
-                        }
-                        else{
-                            while(y != getColumn() + 1 && shiftable){
-                                y = y - 1;
-                                if(chessBoard.hasPiece(0,y)){
-                                    shiftable = false;
-                                }
+                            if (shiftable) {
+                                isShifted = true;
                             }
-
+                            return shiftable;
                         }
-
-                        if(shiftable){
-                            isShifted = true;
+                    } else {
+                        if (chessBoard.getPiece(x, y).getSide() != this.getSide() && Math.abs(x - this.getRow()) <= 1 && Math.abs(y - this.getColumn()) <= 1) {
+                            return true;
+                        } else {
+                            return false;
                         }
-                        return shiftable;
                     }
                 }
-                else{
-                    if (chessBoard.getPiece(x, y).getSide() != this.getSide() && Math.abs(x - this.getRow()) <= 1 && Math.abs(y - this.getColumn()) <= 1) {
-                        return true;
-                    }
-                    else {
-                        return false;
+            } else {
+                if (chessBoard.getPiece(x, y).getSide() != this.getSide() && Math.abs(x - this.getRow()) <= 1 && Math.abs(y - this.getColumn()) <= 1) {
+                    return true;
+                } else {
+                    if (chessBoard.getPiece(x, y).getLabel().equals("C") && chessBoard.getPiece(x, y).getSide() == this.getSide()) {
+                        CastlePiece target = (CastlePiece) this.getChessBoard().getPiece(x, y);
+                        if (this.isMoved() || target.isMoved()) {
+                            return false;
+                        } else {
+                            boolean shiftable = true;
+                            if (this.getColumn() > y) {
+                                while (y != getColumn() - 1 && shiftable) {
+                                    y = y + 1;
+                                    if (chessBoard.hasPiece(7, y)) {
+                                        shiftable = false;
+                                    }
+                                }
+                            } else {
+                                while (y != getColumn() + 1 && shiftable) {
+                                    y = y - 1;
+                                    if (chessBoard.hasPiece(7, y)) {
+                                        shiftable = false;
+                                    }
+                                }
+                            }
+
+                            if (shiftable) {
+                                isShifted = true;
+                            }
+                            return shiftable;
+                        }
+                    } else {
+                        if (chessBoard.getPiece(x, y).getSide() != this.getSide() && Math.abs(x - this.getRow()) <= 1 && Math.abs(y - this.getColumn()) <= 1) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
                 }
             }
         }
         else{
-            if (chessBoard.getPiece(x, y).getSide() != this.getSide() && Math.abs(x - this.getRow()) <= 1 && Math.abs(y - this.getColumn()) <= 1) {
-                return true;
-            } else {
-                if (chessBoard.getPiece(x,y).getLabel().equals("C") && chessBoard.getPiece(x, y).getSide() == this.getSide()){
-                    CastlePiece target = (CastlePiece)this.getChessBoard().getPiece(x,y);
-                    if(this.isMoved() || target.isMoved()){
-                        return false;
-                    }
-                    else{
-                        boolean shiftable = true;
-                        if(this.getColumn() > y){
-                            while(y != getColumn() - 1 && shiftable){
-                                y = y + 1;
-                                if(chessBoard.hasPiece(7,y)){
-                                    shiftable = false;
-                                }
-                            }
-                        }
-                        else{
-                            while(y != getColumn() + 1 && shiftable){
-                                y = y - 1;
-                                if(chessBoard.hasPiece(7,y)){
-                                    shiftable = false;
-                                }
-                            }
-                        }
+            return false;
+        }
+    }
 
-                        if(shiftable){
-                            isShifted = true;
+    public ArrayList<Move> getMoves(){
+        ArrayList<Move> moves = new ArrayList<Move>();
+        if(chessBoard.hasPiece(this.getRow(),this.getColumn() + 1)){
+            if(isLegalCaptureMove(this.getRow(),this.getColumn() + 1)){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow(), this.getColumn() + 1, false));
+            }
+        }
+        else{
+            if(isLegalNonCaptureMove(this.getRow(),this.getColumn() + 1)){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow(), this.getColumn() + 1, false));
+            }
+        }
+
+        if(chessBoard.hasPiece(this.getRow()+1,this.getColumn() + 1)){
+            if(isLegalCaptureMove(this.getRow()+1,this.getColumn() + 1)){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow()+1, this.getColumn() + 1, false));
+            }
+        }
+        else{
+            if(isLegalNonCaptureMove(this.getRow()+1,this.getColumn() + 1)){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow()+1, this.getColumn() + 1, false));
+            }
+        }
+
+        if(chessBoard.hasPiece(this.getRow()+1,this.getColumn())){
+            if(isLegalCaptureMove(this.getRow()+1,this.getColumn() )){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() + 1, this.getColumn() , false));
+            }
+        }
+        else{
+            if(isLegalNonCaptureMove(this.getRow()+1,this.getColumn() )){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow() + 1, this.getColumn() , false));
+            }
+        }
+
+        if(chessBoard.hasPiece(this.getRow(),this.getColumn() - 1 )){
+            if(isLegalCaptureMove(this.getRow(),this.getColumn() -1)){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow(), this.getColumn() - 1 , false));
+            }
+        }
+        else{
+            if(isLegalNonCaptureMove(this.getRow(),this.getColumn() -1)){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow(), this.getColumn()-1 , false));
+            }
+        }
+
+        if(chessBoard.hasPiece(this.getRow()-1,this.getColumn() )){
+            if(isLegalCaptureMove(this.getRow()-1,this.getColumn() )){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow()-1, this.getColumn() , false));
+            }
+        }
+        else{
+            if(isLegalNonCaptureMove(this.getRow()-1,this.getColumn() )){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow()-1, this.getColumn() , false));
+            }
+        }
+
+        if(chessBoard.hasPiece(this.getRow()+1,this.getColumn() -1)){
+            if(isLegalCaptureMove(this.getRow()+1,this.getColumn() - 1)){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow()+1, this.getColumn() - 1, false));
+            }
+        }
+        else{
+            if(isLegalNonCaptureMove(this.getRow() +1,this.getColumn() - 1)){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow()+1, this.getColumn() -1, false));
+            }
+        }
+
+        if(chessBoard.hasPiece(this.getRow()-1,this.getColumn() +1)){
+            if(isLegalCaptureMove(this.getRow()-1,this.getColumn() + 1)){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow()-1, this.getColumn() + 1, false));
+            }
+        }
+        else{
+            if(isLegalNonCaptureMove(this.getRow() -1,this.getColumn() + 1)){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow()-1, this.getColumn() +1, false));
+            }
+        }
+
+        if(chessBoard.hasPiece(this.getRow()-1,this.getColumn() -1)){
+            if(isLegalCaptureMove(this.getRow()-1,this.getColumn() - 1)){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow()-1, this.getColumn() - 1, false));
+            }
+        }
+        else{
+            if(isLegalNonCaptureMove(this.getRow() -1,this.getColumn() - 1)){
+                moves.add(new Move(this.getRow(), this.getColumn(), this.getRow()-1, this.getColumn() -1, false));
+            }
+        }
+
+        if(this.getSide() == IChess.Side.NORTH){
+            if(chessBoard.hasPiece(0,7)) {
+                if (chessBoard.getPiece(0, 7).getLabel().equals("C")) {
+                    if(chessBoard.getPiece(0, 7).getSide() == this.getSide()) {
+                        if (isLegalCaptureMove(0, 7)) {
+                            moves.add(new Move(this.getRow(), this.getColumn(), 0, 7, true));
                         }
-                        return shiftable;
-                    }
-                }
-                else{
-                    if (chessBoard.getPiece(x, y).getSide() != this.getSide() && Math.abs(x - this.getRow()) <= 1 && Math.abs(y - this.getColumn()) <= 1) {
-                        return true;
-                    }
-                    else {
-                        return false;
                     }
                 }
             }
+
+            if(chessBoard.hasPiece(0,0)) {
+                if (chessBoard.getPiece(0, 0).getLabel().equals("C")) {
+                    if(chessBoard.getPiece(0, 0).getSide() == this.getSide()) {
+                        if (isLegalCaptureMove(0, 0)) {
+                            moves.add(new Move(this.getRow(), this.getColumn(), 0, 0, true));
+                        }
+                    }
+                }
+            }
+
+        }
+        else{
+            if(chessBoard.hasPiece(7,0)) {
+                if (chessBoard.getPiece(7, 0).getLabel().equals("C")) {
+                    if(chessBoard.getPiece(7, 0).getSide() == this.getSide()) {
+                        if (isLegalCaptureMove(7, 0)) {
+                            moves.add(new Move(this.getRow(), this.getColumn(), 7, 0, true));
+                        }
+                    }
+                }
+            }
+
+            if(chessBoard.hasPiece(7,7)) {
+                if (chessBoard.getPiece(7, 7).getLabel().equals("C")) {
+                    if (isLegalCaptureMove(7, 7)) {
+                        if(chessBoard.getPiece(7, 7).getSide() == this.getSide()) {
+                            moves.add(new Move(this.getRow(), this.getColumn(), 7, 7, true));
+                        }
+                    }
+                }
+            }
+
+
+        }
+        return moves;
+    }
+
+    public static void main(String[] args){
+        ChessBoard test = new ChessBoard(8,8,new Display(), new IChess());
+        Piece a = new IKingPiece(test,Color.RED, "K", IChess.Side.NORTH,null);
+        test.addPiece(a,3,3);;
+        test.addPiece(new BishopPiece(test, Color.RED, "Z", IChess.Side.NORTH,null),3,2);
+        ArrayList<Move> moves= a.getMoves();
+        for(int i = 0; i < moves.size();i++){
+            System.out.print(moves.get(i).getX0() +" " + moves.get(i).getX1() +" " + moves.get(i).getY0() +" "+  moves.get(i).getY1() + "\n");
         }
     }
+
+
 }

@@ -1,8 +1,6 @@
 import java.awt.Color;
 import javax.swing.Icon;
 
-import JungleChessGame.Side;
-
 /*an abstract class contain the same methods all knids of piece have*/
 public abstract class JunglePiece{
   /*store the board which the piece is in*/
