@@ -16,7 +16,7 @@ public class CastlePiece extends Piece{
     Color newc = getColor();
     String news = getLabel();
     IChess.Side newsi = getSide();
-    return new CastlePiece(null,newc,news,newsi,null);
+    return new CastlePiece(new ChessBoard(s),newc,news,newsi,null);
   }
 
   public boolean isMoved(){

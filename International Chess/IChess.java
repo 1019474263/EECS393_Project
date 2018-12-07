@@ -1,11 +1,12 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.concurrent.Future;
 
 /*a class represent chess game, Xiangqi!*/
 public class IChess implements ChessGame{
   /*check whether game starts*/
   private boolean isAI = false;
-  private MinMaxAI AI = new MinMaxAI(2,121);
+  public MinMaxAI AI = new MinMaxAI(3,121);
   private Side playerSide = Side.SOUTH;
   private Side AISide = Side.NORTH;
   /*store the current side which has moved its piece*/
@@ -14,6 +15,7 @@ public class IChess implements ChessGame{
   private Display display;
   
   /*create a Xiangqi board and add all the pieces needed into it*/
+
   public IChess(){
   currentSide = Side.NORTH;
   display = new Display();
@@ -67,6 +69,15 @@ public class IChess implements ChessGame{
   game.addPiece(new IPawnPiece(game,Color.WHITE,"P", IChess.Side.SOUTH,null),6,7);
   
   }
+
+
+  public IChess(Piece[][] state){
+    this.game = new ChessBoard(state);
+  }
+
+  public ChessBoard getBoard(){
+    return this.game;
+  }
   
   /*check whether it is the right side to play*/
   @Override
@@ -101,13 +112,14 @@ public class IChess implements ChessGame{
         piece.getChessBoard().removePiece(piece.getRow(), piece.getColumn());
         piece.getChessBoard().addPiece(piece, x, y);
         piece.moveDone();
-        Move next = AI.generateNextMove(this);
-        AI.makeMove(this,next);
         if (currentSide == Side.NORTH) {
           currentSide = Side.SOUTH;
         } else {
           currentSide = Side.NORTH;
         }
+        Move next = AI.getDecision(this);
+        AI.makeMove(this,next);
+        System.out.println("AI move " + next.getX0() + " " + next.getY0() + " " + next.getX1() + " " + next.getY1());
         return true;
       } else {
         return false;
@@ -118,7 +130,7 @@ public class IChess implements ChessGame{
   public boolean makeMoveAI(int x0,int y0,int x1,int y1){
     Piece[][] state = this.getState();
     Piece target = state[x0][y0];
-    if(target.isLegalMove(x1, y1) == true) {
+    if(target.isLegalMove(x1, y1) == true && currentSide == AISide) {
       target.getChessBoard().removePiece(target.getRow(), target.getColumn());
       target.getChessBoard().addPiece(target, x1, y1);
       target.moveDone();
@@ -134,11 +146,11 @@ public class IChess implements ChessGame{
   }
 
 
-  public ArrayList<Move> getMoves(){
+  public ArrayList<Move> getMoves(IChess.Side currentSide){
     ArrayList<Move> moves = new ArrayList<Move>();
     for(int i = 0; i < 8; i ++){
       for(int j =0; j < 8; j ++){
-        if(this.game.hasPiece(i,j) && this.game.getPiece(i,j).getSide() == AISide){
+        if(this.game.hasPiece(i,j) && this.game.getPiece(i,j).getSide() == currentSide){
           moves.addAll(this.game.getPiece(i,j).getMoves());
         }
       }
@@ -157,7 +169,6 @@ public class IChess implements ChessGame{
     IChess a = new IChess();
     Move m = new Move(1,4,2,4,false);
     a.AI.makeMove(a,m);
-    ArrayList<Move> moves = a.getMoves();
 
   }
 

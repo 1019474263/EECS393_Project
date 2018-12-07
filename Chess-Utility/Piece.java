@@ -31,6 +31,15 @@ public abstract class Piece {
   public ChessBoard getChessBoard(){
     return board;
   }
+
+  public void setBoard(ChessBoard board){
+    this.board = board;
+  }
+
+  public void setPos(int i, int j){
+    this.x = i;
+    this.y = j;
+  }
   
   /*get the color the piece is*/
   public Color getColor(){
@@ -64,7 +73,17 @@ public abstract class Piece {
     }
     return x;
   }
-  
+
+  public int getRow(Piece[][] state){
+    for(int a=0; a<state.length; a++){
+      for(int b=0; b<state[0].length;b++){
+        if(this.equals(state[a][b])==true){
+          x = a;
+        }
+      }
+    }
+    return x;
+  }
   /*get the column of the piece*/
   public int getColumn(){
     /*find the position of this piece*/
@@ -76,6 +95,18 @@ public abstract class Piece {
       }
     }
     return y;
+  }
+
+  public int getColumn(Piece[][] state){
+    for(int a=0; a<state.length; a++){
+      for(int b=0; b<state[0].length;b++){
+        if(this.equals(state[a][b])==true){
+          y = b;
+        }
+      }
+    }
+    return y;
+
   }
   
   /*call this method after this piece has been moved*/
@@ -99,7 +130,7 @@ public abstract class Piece {
     return new ArrayList<Move>();
   };
 
-  public Piece getClone(){
+  public Piece getClone(Piece[][] s){
     return null;
   }
   
@@ -112,6 +143,10 @@ public abstract class Piece {
     else{
       return false;
     }
+  }
+
+  public void setSide(IChess.Side side){
+    this.side = side;
   }
 
 

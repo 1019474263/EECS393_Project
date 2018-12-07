@@ -59,13 +59,13 @@ public class ChessBoard extends JFrame implements ActionListener{
   }
 
 
-  public ChessBoard(){
-    this.rows=0;
-    this.columns=0;
+  public ChessBoard(Piece[][] state){
+    this.rows=8;
+    this.columns=8;
     this.chessDisplay = null;
     this.chessVersion = null;
     this.j= null;
-    this.p = null;
+    this.p = state;
     this.firstClick = false;
   }
 

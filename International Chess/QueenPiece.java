@@ -10,11 +10,11 @@ public class QueenPiece extends Piece{
     super(board, color, label, side, icon);
   }
 
-  public QueenPiece getClone(){
+  public QueenPiece getClone(Piece[][] s){
     Color newc = getColor();
     String news = getLabel();
     IChess.Side newsi = getSide();
-    return new QueenPiece(null,newc,news,newsi,null);
+    return new QueenPiece(new ChessBoard(s),newc,news,newsi,null);
   }
   
   

@@ -12,11 +12,11 @@ public class IKingPiece extends Piece{
     super(board, color, label, side, icon);
   }
 
-    public IKingPiece getClone(){
+    public IKingPiece getClone(Piece[][] s){
         Color newc = getColor();
         String news = getLabel();
         IChess.Side newsi = getSide();
-        return new IKingPiece(null,newc,news,newsi,null);
+        return new IKingPiece(new ChessBoard(s),newc,news,newsi,null);
     }
 
     @Override

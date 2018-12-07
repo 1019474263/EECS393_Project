@@ -11,11 +11,11 @@ public class IKnightPiece extends Piece{
     super(board, color, label, side, icon);
   }
 
-  public IKnightPiece getClone(){
+  public IKnightPiece getClone(Piece[][] s){
     Color newc = getColor();
     String news = getLabel();
     IChess.Side newsi = getSide();
-    return new IKnightPiece(null,newc,news,newsi,null);
+    return new IKnightPiece(new ChessBoard(s),newc,news,newsi,null);
   }
   
   /*check whether the piece can move to input position

@@ -14,10 +14,9 @@ public class BishopPiece extends Piece{
     Color newc = getColor();
     String news = getLabel();
     IChess.Side newsi = getSide();
-
-    return new BishopPiece(new ChessBoard(),newc,news,newsi,null);
+    return new BishopPiece(new ChessBoard(s),newc,news,newsi,null);
   }
-  
+
   /*check whether the piece can move to input position
    * while there is an empty square*/
   public boolean isLegalNonCaptureMove(int x, int y){
