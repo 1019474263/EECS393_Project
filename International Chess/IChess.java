@@ -167,8 +167,7 @@ public class IChess implements ChessGame{
 
   public static void main(String[] args){
     IChess a = new IChess();
-    Move m = new Move(1,4,2,4,false);
-    a.AI.makeMove(a,m);
+    a.currentSide = Side.SOUTH;
 
   }
 
