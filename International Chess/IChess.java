@@ -6,7 +6,7 @@ import java.util.concurrent.Future;
 public class IChess implements ChessGame{
   /*check whether game starts*/
   private boolean isAI = false;
-  public MinMaxAI AI = new MinMaxAI(3,121);
+  public MinMaxAI AI = new MinMaxAI(2,121);
   private Side playerSide = Side.SOUTH;
   private Side AISide = Side.NORTH;
   /*store the current side which has moved its piece*/

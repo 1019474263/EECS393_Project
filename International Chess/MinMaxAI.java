@@ -15,29 +15,6 @@ public class MinMaxAI {
         game.makeMoveAI(move.getX0(),move.getY0(),move.getX1(),move.getY1());
     }
 
-
-    public Move generateNextMove(IChess game){
-        ArrayList<Move> moves = game.getMoves(IChess.Side.NORTH);
-        int index = rand.nextInt(moves.size());
-        Move nextmove = moves.get(index);
-        return nextmove;
-    }
-
-    public Move getNextBestmove(IChess game){
-        Piece[][] state = game.getState();
-        ArrayList<Move> moves = game.getMoves(IChess.Side.NORTH);
-        ArrayList<Piece[][]> states = new ArrayList<Piece[][]>();
-        List<Integer> eval = new ArrayList<Integer> ();
-        for(int i = 0; i < moves.size();i++){
-            Piece[][] next = getNextState(state,moves.get(i));
-            states.add(next);
-            eval.add(eval(next));
-        }
-        int maxindex = Collections.max(eval);
-
-        return moves.get(maxindex);
-    }
-
     private static class movingInfo{
         int value;
         Move possibleMove;
