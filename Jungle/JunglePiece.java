@@ -1,9 +1,8 @@
 import java.awt.Color;
 import javax.swing.Icon;
 
-import JungleChessGame.Side;
 
-/*an abstract class contain the same methods all knids of piece have*/
+/*an abstract class contain the same methods all kinds of piece have*/
 public abstract class JunglePiece{
   /*store the board which the piece is in*/
   private JungleChessBoard board=null;
@@ -102,7 +101,7 @@ public abstract class JunglePiece{
   }
   
   private boolean isLargerSize(JunglePiece piece) {
-	  if (this.getSize() < piece.getSize() && !(this.getSize()==0 && piece.getSize()==7))
+	  if ((this.getSize() < piece.getSize() && !(this.getSize()==0 && piece.getSize()==7))||(this.getSize()==7 && piece.getSize()==0))
 		  return false;
 	  else
 		  return true;
